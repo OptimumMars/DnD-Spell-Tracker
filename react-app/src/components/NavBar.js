@@ -2,35 +2,46 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = ({ setAuthenticated, authenticated }) => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
+    <nav className="nav_bar">
+      <div>
+        <NavLink to="/" exact={true} activeClassName="active">
+          Home
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
+      </div>
+      { !authenticated && (
+        <>
+          <div>
+            <NavLink to="/login" exact={true} activeClassName="active">
+              Login
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
+          </div>
+          <div>
+            <NavLink to="/sign-up" exact={true} activeClassName="active">
+              Sign Up
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
+          </div>
+          <div>
+            <NavLink to="/users" exact={true} activeClassName="active">
+              Users
           </NavLink>
-        </li>
-        <li>
+          </div>
+        </>
+      )}
+      {/* { authenticated && ( */}
+      <>
+        <div>
+          <NavLink to="/characters" exact={true} activeClassName="active">
+            Character Select
+            </NavLink>
+        </div>
+        <div>
           <LogoutButton setAuthenticated={setAuthenticated} />
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </>
+      {/* )} */}
+    </nav >
   );
 }
 

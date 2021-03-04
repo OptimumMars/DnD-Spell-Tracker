@@ -1,21 +1,35 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
+import * as sessionActions from "../../store/session";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
   const onLogin = async (e) => {
     e.preventDefault();
-    const user = await login(email, password);
+    const user = await dispatch(sessionActions.login(email, password));
     if (!user.errors) {
       setAuthenticated(true);
     } else {
       setErrors(user.errors);
     }
   };
+
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const user = await dispatch(sessionActions.login('demo@aa.io', 'password'));
+    if (!user.errors) {
+      setAuthenticated(true);
+    } else {
+      setErrors(user.errors);
+    }
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -26,11 +40,11 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   };
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/characters" />;
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} className="parchment_paper">
       <div>
         {errors.map((error) => (
           <div>{error}</div>
@@ -57,6 +71,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         />
         <button type="submit">Login</button>
       </div>
+      <form onSubmit={demoLogin}>
+        <button type="submit">Demo User</button>
+      </form>
     </form>
   );
 };
