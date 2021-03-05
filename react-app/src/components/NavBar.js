@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import { useSelector } from "react-redux";
 
-const NavBar = ({ setAuthenticated, authenticated }) => {
+const NavBar = () => {
   return (
     <nav className="nav_bar">
       <div>
@@ -10,26 +11,23 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
           Home
           </NavLink>
       </div>
-      { !authenticated && (
-        <>
-          <div>
-            <NavLink to="/login" exact={true} activeClassName="active">
-              Login
+      <>
+        <div>
+          <NavLink to="/login" exact={true} activeClassName="active">
+            Login
           </NavLink>
-          </div>
-          <div>
-            <NavLink to="/sign-up" exact={true} activeClassName="active">
-              Sign Up
+        </div>
+        <div>
+          <NavLink to="/sign-up" exact={true} activeClassName="active">
+            Sign Up
           </NavLink>
-          </div>
-          <div>
-            <NavLink to="/users" exact={true} activeClassName="active">
-              Users
+        </div>
+        <div>
+          <NavLink to="/users" exact={true} activeClassName="active">
+            Users
           </NavLink>
-          </div>
-        </>
-      )}
-      {/* { authenticated && ( */}
+        </div>
+      </>
       <>
         <div>
           <NavLink to="/characters" exact={true} activeClassName="active">
@@ -37,10 +35,9 @@ const NavBar = ({ setAuthenticated, authenticated }) => {
             </NavLink>
         </div>
         <div>
-          <LogoutButton setAuthenticated={setAuthenticated} />
+          <LogoutButton />
         </div>
       </>
-      {/* )} */}
     </nav >
   );
 }

@@ -36,7 +36,7 @@ export const login = (email, password) => async (dispatch) => {
 //     return res;
 // };
 
-export const signUp = (username, firstname, lastname, email, password) => async (dispatch) => {
+export const signUp = (username, email, password) => async (dispatch) => {
     const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
@@ -46,8 +46,6 @@ export const signUp = (username, firstname, lastname, email, password) => async 
             username,
             email,
             password,
-            firstname,
-            lastname,
         }),
     });
     const user = await response.json()
@@ -69,6 +67,16 @@ export const logout = () => async (dispatch) => {
 
 const initialState = {
     user: null
+};
+
+export const restoreUser = () => async dispatch => {
+    const res = await fetch('/api/auth');
+    if (res.ok) {
+        const data = await res.json();
+
+        dispatch(setUser(data));
+    }
+    return res;
 };
 
 const sessionReducer = (state = initialState, action) => {

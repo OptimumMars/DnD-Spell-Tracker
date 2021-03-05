@@ -16,34 +16,24 @@ function CharacterDashboard() {
             await dispatch(getCharacters(currentUser.id));
         }
         fetchUserCharacters();
-    }, [])
+    }, [currentUser])
 
     let userCharacters = useSelector((state) => state.characters.characters);
-
-    console.log(userCharacters)
-
-    if (userCharacters) {
-        const characterComponents = userCharacters.map((character) => {
-            return (
-                <div>
-                    <h3>{character.name}</h3>
-                    <ul>
-                        <li>{character.characterClass}</li>
-                        <li>{character.race}</li>
-                    </ul>
-                </div>
-            );
-        })
-    };
 
     return (
         <>
             <h1>
                 Character Dashboard
             </h1>
-            {/* <div>
-                {characterComponents}
-            </div> */}
+            { userCharacters && userCharacters.map(character => (
+                <div key={character.id}>
+                    <h3>{character.name}</h3>
+                    <ul>
+                        <li>{character.characterClass}</li>
+                        <li>{character.race}</li>
+                    </ul>
+                </div>
+            ))}
         </>
     )
 }

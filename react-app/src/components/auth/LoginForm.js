@@ -1,34 +1,26 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
 import * as sessionActions from "../../store/session";
 
-const LoginForm = ({ authenticated, setAuthenticated }) => {
+const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
+  const currentUser = useSelector(state => state.session.user)
+
   const onLogin = async (e) => {
     e.preventDefault();
-    const user = await dispatch(sessionActions.login(email, password));
-    if (!user.errors) {
-      setAuthenticated(true);
-    } else {
-      setErrors(user.errors);
-    }
+    await dispatch(sessionActions.login(email, password));
   };
 
   const demoLogin = async (e) => {
     e.preventDefault();
-    const user = await dispatch(sessionActions.login('demo@aa.io', 'password'));
-    if (!user.errors) {
-      setAuthenticated(true);
-    } else {
-      setErrors(user.errors);
-    }
+    await dispatch(sessionActions.login('demo@aa.io', 'password'));
   }
 
   const updateEmail = (e) => {
@@ -39,7 +31,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  if (authenticated) {
+  if (currentUser) {
     return <Redirect to="/characters" />;
   }
 
