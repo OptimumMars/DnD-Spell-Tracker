@@ -8,7 +8,7 @@ const setCharacters = (characters) => {
     };
 };
 
-const removeUser = () => {
+const removeCharacters = () => {
     return {
         type: REMOVE_CHARACTERS,
     };
@@ -28,7 +28,7 @@ const characterReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CHARACTERS:
             newState = Object.assign({}, state);
-            newState.characters = action.payload;
+            newState = action.payload;
             return newState;
         case REMOVE_CHARACTERS:
             newState = Object.assign({}, state);

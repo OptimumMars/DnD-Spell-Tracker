@@ -13,15 +13,38 @@ function CharacterDashboard() {
             if (currentUser === null) {
                 return null;
             }
-            dispatch(getCharacters(currentUser.id))
+            await dispatch(getCharacters(currentUser.id));
         }
         fetchUserCharacters();
     }, [])
 
+    let userCharacters = useSelector((state) => state.characters.characters);
+
+    console.log(userCharacters)
+
+    if (userCharacters) {
+        const characterComponents = userCharacters.map((character) => {
+            return (
+                <div>
+                    <h3>{character.name}</h3>
+                    <ul>
+                        <li>{character.characterClass}</li>
+                        <li>{character.race}</li>
+                    </ul>
+                </div>
+            );
+        })
+    };
+
     return (
-        <h1>
-            This is the character dashboard
-        </h1>
+        <>
+            <h1>
+                Character Dashboard
+            </h1>
+            {/* <div>
+                {characterComponents}
+            </div> */}
+        </>
     )
 }
 

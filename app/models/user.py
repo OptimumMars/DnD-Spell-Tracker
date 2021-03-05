@@ -45,6 +45,15 @@ class Character(db.Model):
     spells = db.relationship('Spell', back_populates='character')
     spellSlots = db.relationship('SpellSlot', back_populates='character')
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "race": self.race,
+            "characterClass": self.characterClass,
+            "userId": self.userId,
+        }
+
 
 class Spell(db.Model):
     __tablename__ = 'spells'

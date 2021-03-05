@@ -10,4 +10,4 @@ character_routes = Blueprint("/:userId/characters", __name__)
 def character_select(userId):
     characters = Character.query.filter(Character.userId == userId).all()
 
-    print("Characters here ***********", characters)
+    return {"characters": [character.to_dict() for character in characters]}
