@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Redirect, useParams } from "react-router-dom";
-import { getCharacters } from "../store/character";
+import { getCharacters, removeCharacter } from "../store/character";
 import { useDispatch, useSelector } from "react-redux";
 
 function CharacterDashboard() {
@@ -18,6 +18,10 @@ function CharacterDashboard() {
         fetchUserCharacters();
     }, [currentUser])
 
+    const onRemove = (characterId) => async () => {
+        await dispatch(removeCharacter(characterId));
+    }
+
     let userCharacters = useSelector((state) => state.characters.characters);
 
     return (
@@ -32,12 +36,12 @@ function CharacterDashboard() {
                         <li>{character.characterClass}</li>
                         <li>{character.race}</li>
                     </ul>
-                    <form>
+                    <div>
                         <button>Select Character</button>
-                    </form>
-                    <form>
-                        <button>Remove Character</button>
-                    </form>
+                    </div>
+                    <div>
+                        <button onClick={onRemove(character.id)}>Remove Character</button>
+                    </div>
                 </div>
             ))}
             <button>

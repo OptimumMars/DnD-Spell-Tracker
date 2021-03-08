@@ -18,7 +18,6 @@ def character_select(userId):
 @character_routes.route("", methods=['POST'])
 @login_required
 def new_character():
-    print("Backend route hit")
     form = NewCharacterForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -32,3 +31,15 @@ def new_character():
         db.session.commit()
         return character.to_dict()
     return {"errors": "bad data"}
+
+
+@character_routes.route("/<int:characterId>", methods=["DELETE"])
+@login_required
+def remove_character(characterId):
+    character = Character.query.get(characterId)
+    db.session.delete(character)
+    db.session.commit()
+    characters = Character.query.filter(
+        Character.userId == current_user.id).all()
+    # return {"message": "character deleted", "id": characterId}
+    return {"characters": [character.to_dict() for character in characters]}

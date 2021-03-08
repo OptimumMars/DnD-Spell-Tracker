@@ -8,11 +8,11 @@ const setCharacters = (characters) => {
     };
 };
 
-const removeCharacters = () => {
-    return {
-        type: REMOVE_CHARACTERS,
-    };
-};
+// const removeCharacters = () => {
+//     return {
+//         type: REMOVE_CHARACTERS,
+//     };
+// };
 
 const initialState = {};
 
@@ -37,6 +37,17 @@ export const addCharacter = (characterName, characterRace, characterClass, userI
         }),
     });
     return response.ok;
+}
+
+export const removeCharacter = (characterId) => async (dispatch) => {
+    const response = await fetch(`/api/characters/${characterId}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+    const characters = await response.json();
+    dispatch(setCharacters(characters))
 }
 
 const characterReducer = (state = initialState, action) => {
