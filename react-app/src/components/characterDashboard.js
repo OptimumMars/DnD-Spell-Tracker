@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Redirect, useParams } from "react-router-dom";
+import { NavLink, Redirect, useParams } from "react-router-dom";
 import { getCharacters } from "../store/character";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -19,11 +19,6 @@ function CharacterDashboard() {
     }, [currentUser])
 
     let userCharacters = useSelector((state) => state.characters.characters);
-
-    const newCharacter = async (e) => {
-        e.preventDefault();
-        return <Redirect to="/" />;
-    }
 
     return (
         <div className="parchment_paper">
@@ -45,9 +40,9 @@ function CharacterDashboard() {
                     </form>
                 </div>
             ))}
-            <form onSubmit={newCharacter}>
-                <button type="submit">New Character +</button>
-            </form>
+            <button>
+                <NavLink to="/characters/new" exact={true}>New Character +</NavLink>
+            </button>
         </div>
     )
 }

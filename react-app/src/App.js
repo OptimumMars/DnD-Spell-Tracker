@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
 import { restoreUser } from "./store/session";
 import CharacterDashboard from "./components/characterDashboard";
+import NewCharacterForm from "./components/newCharacter";
 import { useDispatch } from "react-redux";
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/characters" exact={true}>
           <CharacterDashboard />
+        </ProtectedRoute>
+        <ProtectedRoute path="/characters/new" exact={true}>
+          <NewCharacterForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

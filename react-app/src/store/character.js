@@ -17,11 +17,27 @@ const removeCharacters = () => {
 const initialState = {};
 
 export const getCharacters = (userId) => async (dispatch) => {
-    const response = await fetch(`/api/users/${userId}/characters`);
+    const response = await fetch(`/api/characters/${userId}/characters`);
     const characters = await response.json()
     dispatch(setCharacters(characters));
     return characters;
 };
+
+export const addCharacter = (characterName, characterRace, characterClass, userId) => async () => {
+    const response = await fetch(`/api/characters`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            characterName,
+            characterClass,
+            characterRace,
+            userId,
+        }),
+    });
+    return response.ok;
+}
 
 const characterReducer = (state = initialState, action) => {
     let newState;
