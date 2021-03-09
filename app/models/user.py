@@ -76,6 +76,24 @@ class Spell(db.Model):
     character = db.relationship(
         'Character', lazy='joined', back_populates='spells')
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "level": self.level,
+            "description": self.description,
+            "range": self.range,
+            "attackType": self.attackType,
+            "damage": self.damage,
+            "duration": self.duration,
+            "components": self.components,
+            "material": self.material,
+            "concentration": self.concentration,
+            "castTime": self.castTime,
+            "ritual": self.ritual,
+            "characterId": self.characterId,
+        }
+
 
 class SpellSlot(db.Model):
     __tablename__ = 'spellSlots'
@@ -87,3 +105,11 @@ class SpellSlot(db.Model):
 
     character = db.relationship(
         'Character', lazy='joined', back_populates='spellSlots')
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "slotLevel": self.slotLevel,
+            "exhausted": self.exhausted,
+            "characterId": self.characterId,
+        }

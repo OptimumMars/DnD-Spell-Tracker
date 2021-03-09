@@ -43,3 +43,13 @@ def remove_character(characterId):
         Character.userId == current_user.id).all()
     # return {"message": "character deleted", "id": characterId}
     return {"characters": [character.to_dict() for character in characters]}
+
+
+@character_routes.route("/<int:characterId>", methods=["GET"])
+@login_required
+def get_active_character(characterId):
+    character = Character.query.get(characterId)
+    spells = [spell.to_dict() for spell in character.spells]
+    spellSlots = [spellSlot.to_dict() for spellSlot in character.spellSlots]
+
+    return {"activeCharacter": character.to_dict(), "characterSpells": spells, "characterSpellSlots": spellSlots}

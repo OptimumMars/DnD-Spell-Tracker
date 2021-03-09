@@ -37,7 +37,9 @@ function CharacterDashboard() {
                         <li>{character.race}</li>
                     </ul>
                     <div>
-                        <button>Select Character</button>
+                        <button>
+                            <NavLink to={`/characters/${character.id}`}>Select Character</NavLink>
+                        </button>
                     </div>
                     <div>
                         <button onClick={onRemove(character.id)}>Remove Character</button>
