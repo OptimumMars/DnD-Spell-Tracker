@@ -24,13 +24,16 @@ const CharacterView = () => {
 
     return (
         <div className="parchment_paper">
-            <h1>this is the character specific page</h1>
+            {/* <h1>this is the character specific page</h1> */}
             { activeCharacter &&
                 <div>
-                    <h3>{activeCharacter.activeCharacter.name}</h3>
+                    <h1>{activeCharacter.activeCharacter.name}</h1>
+                    <h3>Spells:</h3>
                     {activeCharacter.characterSpells && activeCharacter.characterSpells.map(spell => (
                         <div>
-                            <h5>{spell.name}</h5>
+                            <h3>
+                                <NavLink to={`/spells/${spell.id}`}>{spell.name}</NavLink>
+                            </h3>
                             <ul>
                                 <li>{spell.level}</li>
                                 <li>{spell.description}</li>

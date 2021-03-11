@@ -9,6 +9,7 @@ import { restoreUser } from "./store/session";
 import CharacterDashboard from "./components/characterDashboard";
 import NewCharacterForm from "./components/newCharacter";
 import CharacterView from "./components/characterView";
+import SpellView from "./components/spellView";
 import { useDispatch } from "react-redux";
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/characters/:characterId" exact={true}>
           <CharacterView />
+        </ProtectedRoute>
+        <ProtectedRoute path="/spells/:spellId" exact={true}>
+          <SpellView></SpellView>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
