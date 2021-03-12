@@ -39,8 +39,8 @@ const SpellView = () => {
                         <li>Cast Time:{spell.castTime}</li>
                         <li>Duration: {spell.duration}</li>
                         <li>Range: {spell.range}</li>
-                        <li>Concentration: {spell.concentration}</li>
-                        <li>Ritual: {spell.ritual}</li>
+                        <li>Concentration: {spell.concentration.toString()}</li>
+                        <li>Ritual: {spell.ritual.toString()}</li>
                     </ul>
                 </div>
             )
