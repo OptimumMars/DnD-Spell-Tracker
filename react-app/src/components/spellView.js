@@ -26,7 +26,6 @@ const SpellView = () => {
 
     return (
         <div className="parchment_paper">
-            <h1>this is the specific spell view</h1>
             { spell && (
                 <div>
                     <h1>{spell.name}</h1>
