@@ -18,8 +18,34 @@ const SpellView = () => {
         fetchActiveSpell();
     }, [spellId])
 
+    const spell = useSelector(state => state.spells.activeSpell)
+
+    const spellArr = Object.entries(spell || [])
+
+    console.log(spellArr)
+
     return (
-        <h1>this is the specific spell view</h1>
+        <div className="parchment_paper">
+            <h1>this is the specific spell view</h1>
+            { spell && (
+                <div>
+                    <h1>{spell.name}</h1>
+                    <p>{spell.description}</p>
+                    <p>{spell.damage}</p>
+                    <ul>
+                        <li>Level: {spell.level}</li>
+                        <li>Components: {spell.components}</li>
+                        <li>Material: {spell.material}</li>
+                        <li>Cast Time:{spell.castTime}</li>
+                        <li>Duration: {spell.duration}</li>
+                        <li>Range: {spell.range}</li>
+                        <li>Concentration: {spell.concentration}</li>
+                        <li>Ritual: {spell.ritual}</li>
+                    </ul>
+                </div>
+            )
+            }
+        </div>
     )
 }
 
