@@ -4,6 +4,8 @@ import LogoutButton from './auth/LogoutButton';
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
+  const user = useSelector(state => state.session.user)
+
   return (
     <nav className="nav_bar">
       <div>
@@ -12,32 +14,40 @@ const NavBar = () => {
           </NavLink>
       </div>
       <>
-        <div>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
+        { !user && (
+          <>
+            <div>
+              <NavLink to="/login" exact={true} activeClassName="active">
+                Login
           </NavLink>
-        </div>
-        <div>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
+            </div>
+            <div>
+              <NavLink to="/sign-up" exact={true} activeClassName="active">
+                Sign Up
           </NavLink>
-        </div>
+            </div>
+          </>
+        )
+        }
         {/* <div>
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
         </div> */}
       </>
-      <>
-        <div>
-          <NavLink to="/characters" exact={true} activeClassName="active">
-            Character Select
+      { user && (
+        <>
+          <div>
+            <NavLink to="/characters" exact={true} activeClassName="active">
+              Character Select
             </NavLink>
-        </div>
-        <div>
-          <LogoutButton />
-        </div>
-      </>
+          </div>
+          <div>
+            <LogoutButton />
+          </div>
+        </>
+      )
+      }
     </nav >
   );
 }
