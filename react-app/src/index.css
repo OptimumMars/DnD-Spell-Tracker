@@ -16,7 +16,11 @@
 }
 
 .parchment_paper {
-    background-color: #F1F1D4
+    border: solid #FFBF00 0.25rem;
+    border-radius: 0.25rem;
+    background-color: #F1F1D4;
+    margin: 2rem;
+    padding: 1rem;
 }
 
 .login_form {
