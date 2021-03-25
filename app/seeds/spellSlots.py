@@ -22,5 +22,5 @@ def seed_spellSlots():
 
 
 def undo_spellSlots():
-    db.session.execute('TRUNCATE spellSlots;')
+    db.session.execute('TRUNCATE "spellSlots";')
     db.session.commit()
