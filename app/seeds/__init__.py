@@ -26,7 +26,7 @@ def seed():
 def undo():
     undo_spells()
     undo_spellSlots()
-    undo_users()
     undo_characters()
+    undo_users()
 
     # Add other undo functions here
