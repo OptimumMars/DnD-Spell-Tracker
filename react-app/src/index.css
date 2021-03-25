@@ -1,6 +1,5 @@
 /* TODO Add site wide styles */
 .nav_bar {
-    align-items: flex-start;
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -8,15 +7,19 @@
     margin-bottom: 1rem;
     background-color: lightgray;
     border: 0.25rem solid darkgray;
+    border-radius: 0.25rem;
     width: 100%;
 }
 
 .whole_page {
-    background-color: red;
+    border: solid grey 0.25rem;
+    background-color: #ff5148;
+    padding: 1rem;
 }
 
 .parchment_paper {
-    border: solid #FFBF00 0.25rem;
+    display: grid;
+    border: solid #ffad48 0.25rem;
     border-radius: 0.25rem;
     background-color: #F1F1D4;
     margin: 2rem;
@@ -24,5 +27,6 @@
 }
 
 .login_form {
-    width: 20rem;
+    align-self: center;
+    justify-self: center;
 }

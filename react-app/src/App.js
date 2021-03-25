@@ -30,33 +30,35 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <h1>DnD Spell Tracker</h1>
-        </ProtectedRoute>
-        <ProtectedRoute path="/characters" exact={true}>
-          <CharacterDashboard />
-        </ProtectedRoute>
-        <ProtectedRoute path="/characters/new" exact={true}>
-          <NewCharacterForm />
-        </ProtectedRoute>
-        <ProtectedRoute path="/characters/:characterId" exact={true}>
-          <CharacterView />
-        </ProtectedRoute>
-        <ProtectedRoute path="/spells/:spellId" exact={true}>
-          <SpellView></SpellView>
-        </ProtectedRoute>
-      </Switch>
+      <div className="whole_page">
+        <NavBar />
+        <Switch>
+          <Route path="/login" exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path="/sign-up" exact={true}>
+            <SignUpForm />
+          </Route>
+          <ProtectedRoute path="/users/:userId" exact={true}>
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute path="/" exact={true}>
+            <h1>DnD Spell Tracker</h1>
+          </ProtectedRoute>
+          <ProtectedRoute path="/characters" exact={true}>
+            <CharacterDashboard />
+          </ProtectedRoute>
+          <ProtectedRoute path="/characters/new" exact={true}>
+            <NewCharacterForm />
+          </ProtectedRoute>
+          <ProtectedRoute path="/characters/:characterId" exact={true}>
+            <CharacterView />
+          </ProtectedRoute>
+          <ProtectedRoute path="/spells/:spellId" exact={true}>
+            <SpellView></SpellView>
+          </ProtectedRoute>
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }
