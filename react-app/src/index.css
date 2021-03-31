@@ -17,6 +17,14 @@
     padding: 1rem;
 }
 
+.character_card {
+    border: solid grey 0.25rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    justify-self: center;
+    min-width: 260px;
+}
+
 .parchment_paper {
     display: grid;
     border: solid #ffad48 0.25rem;
@@ -24,6 +32,7 @@
     background-color: #F1F1D4;
     margin: 2rem;
     padding: 1rem;
+    box-shadow: 0.5rem 0.5rem 0.25rem grey;
 }
 
 .login_form {

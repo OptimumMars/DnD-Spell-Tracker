@@ -26,11 +26,11 @@ function CharacterDashboard() {
 
     return (
         <div className="parchment_paper">
-            <h1>
+            <h1 className="login_form">
                 Character Dashboard
             </h1>
             { userCharacters && userCharacters.map(character => (
-                <div key={character.id}>
+                <div key={character.id} className="character_card">
                     <h3>{character.name}</h3>
                     <ul>
                         <li>{character.characterClass}</li>
@@ -46,7 +46,7 @@ function CharacterDashboard() {
                     </div>
                 </div>
             ))}
-            <button>
+            <button className="character_card">
                 <NavLink to="/characters/new" exact={true}>New Character +</NavLink>
             </button>
         </div>
